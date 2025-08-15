@@ -119,7 +119,7 @@ function HeroSection(){
               {/* Browse Patterns */}
               <button className="flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-gray-900 font-medium shadow-md hover:shadow-lg transition-shadow">
                 <Code size={18} />
-                Browse Courses
+                Login or Sign Up
               </button>
             </div>
 

@@ -13,50 +13,60 @@ import {
   Menu,
   ChevronRight,
 } from "lucide-react";
+import {Link} from 'react-router-dom'
+import PracticeRoom from "./PracticeRoom"
 
 
 
 /* ------------------------ Root page ------------------------ */
 export default function UserMainPage() {
-  // demo user (передавай реального користувача через props або контекст)
-  const demoUser = {
-    name: "Viktor",
-    avatar: "/avatar.jpg", // або null для заглушки
-    level: "Intermediate",
-  };
+    const demoUser = {
+      name: "Viktor",
+      avatar: "/avatar.jpg",
+      level: "Intermediate",
+    };
+  
+    const [activeSection, setActiveSection] = useState({ id: "dashboard", title: null });
+  
+    return (
+      <div className="min-h-screen bg-transparent text-gray-900">
+        <Navbar user={demoUser} />
+        <div className="max-w-8xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 px-4 py-8 pl-0 pt-0">
+          <aside className="md:col-span-4 lg:col-span-2 h-full">
+            <SidebarRoadmap setActiveSection={setActiveSection} />
+          </aside>
+  
+          <main className="md:col-span-8 lg:col-span-9 space-y-6 h-screen pt-20">
+            <UserHeader user={demoUser}  setActiveSection={setActiveSection}/>
+  
+            {/* Dashboard контент */}
+            {activeSection.id === "dashboard" && (
+              <>
+                <StatsGrid />
+                <div className="grid md:grid-cols-2 gap-6">
+                  <DailyTasks />
+                  <div className="space-y-6">
+                    <ProgressCard />
+                    <FlashcardPreview />
+                  </div>
+                </div>
+                <Recommendations />
+              </>
+            )}
+  
+            {/* Рендер теми в PracticeRoom */}
+            {activeSection.id !== "dashboard" && activeSection.title && (
+              <div>
 
-  return (
-    <div className="min-h-screen bg-transparent text-gray-900">
-
-            {/* <div class="fixed inset-0 pointer-events-none z-[9999]">
-                    <div class="absolute top-0 left-1/2 w-px h-full bg-red-500 transform -translate-x-1/2"></div>
-                    <div class="absolute left-0 top-1/2 w-full h-px bg-blue-500 transform -translate-y-1/2"></div>
-            </div> */}
-
-      <Navbar user={demoUser} />
-      <div className="max-w-8xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 px-4 py-8 pl-0 pt-0">
-        <aside className="md:col-span-4 lg:col-span-2 h-full">
-          <SidebarRoadmap />
-        </aside>
-
-        <main className="md:col-span-8 lg:col-span-9 space-y-6 h-screen pt-20">
-          <UserHeader user={demoUser} />
-
-          <StatsGrid />
-          <div className="grid md:grid-cols-2 gap-6">
-            <DailyTasks />
-            <div className="space-y-6">
-              <ProgressCard />
-              <FlashcardPreview />
-            </div>
-          </div>
-          <Recommendations />
-        </main>
+                <PracticeRoom topic={activeSection.title} />
+              </div>
+            )}
+          </main>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
-  );
-}
+    );
+  }
 
 /* ------------------------ Navbar ------------------------ */
 /* логотип зсувається вліво (на UI відразу ліворуч), справа аватар */
@@ -97,155 +107,96 @@ function Navbar({ user }){
 
 /* ------------------------ Sidebar Roadmap ------------------------ */
 /* Roadmap з секціями і підтемами (UI only) */
-function SidebarRoadmap() {
+// SidebarRoadmap.jsx
+export function SidebarRoadmap({ setActiveSection }) {
     const roadmap = [
-        {
-          id: "beginner",
-          title: "Python Beginner",
-          topics: ["Variables", "Data Types", "Operators", "Strings", "Lists"]
-        },
-        {
-          id: "intermediate",
-          title: "Python Intermediate",
-          topics: ["Comprehensions", "Functions", "Files", "OOP", "Decorators"]
-        },
-        {
-          id: "data",
-          title: "Data Science Basics",
-          topics: ["NumPy", "Pandas", "Matplotlib", "Seaborn", "EDA"]
-        },
-        {
-          id: "ml",
-          title: "Machine Learning",
-          topics: ["Scikit-Learn", "Feature Engineering", "Model Evaluation", "Regression", "Classification"]
-        },
-        {
-          id: "projects",
-          title: "Projects & Portfolio",
-          topics: ["Mini Projects", "Data Analysis Projects", "Web Scraping Projects", "Deploy", "Portfolio Site"]
-        },
-        {
-          id: "advanced-python",
-          title: "Advanced Python",
-          topics: ["Generators", "Context Managers", "Concurrency", "Typing", "Error Handling"]
-        },
-        {
-          id: "web-dev",
-          title: "Web Development with Python",
-          topics: ["Flask", "Django", "REST APIs", "Templates", "Deployment"]
-        },
-        {
-          id: "deep-learning",
-          title: "Deep Learning",
-          topics: ["TensorFlow", "Keras", "CNNs", "RNNs", "Transfer Learning"]
-        },
-        {
-          id: "nlp",
-          title: "Natural Language Processing",
-          topics: ["Text Processing", "Tokenization", "Word Embeddings", "Sentiment Analysis", "Transformers"]
-        },
-        {
-          id: "data-viz",
-          title: "Data Visualization",
-          topics: ["Matplotlib", "Seaborn", "Plotly", "Dash", "Interactive Charts"]
-        },
-        {
-          id: "ai-projects",
-          title: "AI Projects",
-          topics: ["Prediction Models", "Classification Projects", "Clustering Projects", "NLP Projects", "Portfolio Deployment"]
-        },
-        {
-          id: "career",
-          title: "Career & Learning Resources",
-          topics: ["Interview Prep", "Resume Tips", "GitHub Best Practices", "Learning Communities", "Online Courses"]
-        },
-        {
-          id: "automation",
-          title: "Python Automation",
-          topics: ["Web Scraping", "Excel Automation", "Email Automation", "Scripts", "Bots"]
-        },
-        {
-          id: "cloud",
-          title: "Cloud & Deployment",
-          topics: ["AWS Basics", "Docker", "Heroku", "CI/CD Pipelines", "Serverless Functions"]
-        }
-      ];
-
-  const [expanded, setExpanded] = useState(roadmap[0].id);
-
-  return (
-    <div className="top-0">
-      <div className="bg-white  pt-20">
-        <div className="flex items-center justify-between mb-4">
-          <h4 className="font-semibold pl-3">Roadmap</h4>
-          {/* <span className="text-sm text-gray-500">{roadmap.length} tracks</span> */}
+      { id: "python-beginner", title: "Python Beginner", topics: ["Variables", "Data Types", "Operators", "Strings", "Lists"] },
+      { id: "python-intermediate", title: "Python Intermediate", topics: ["Comprehensions", "Functions", "Files", "OOP", "Decorators"] },
+      { id: "data-science", title: "Data Science Basics", topics: ["NumPy", "Pandas", "Matplotlib", "Seaborn", "EDA"] },
+      { id: "ml", title: "Machine Learning", topics: ["Scikit-Learn", "Feature Engineering", "Model Evaluation", "Regression", "Classification"] },
+      { id: "projects", title: "Projects & Portfolio", topics: ["Mini Projects", "Data Analysis Projects", "Web Scraping Projects", "Deploy", "Portfolio Site"] },
+      { id: "advanced-python", title: "Advanced Python", topics: ["Generators", "Context Managers", "Concurrency", "Typing", "Error Handling"] },
+      { id: "web-dev", title: "Web Development with Python", topics: ["Flask", "Django", "REST APIs", "Templates", "Deployment"] },
+      { id: "deep-learning", title: "Deep Learning", topics: ["TensorFlow", "Keras", "CNNs", "RNNs", "Transfer Learning"] },
+      { id: "nlp", title: "Natural Language Processing", topics: ["Text Processing", "Tokenization", "Word Embeddings", "Sentiment Analysis", "Transformers"] },
+      { id: "data-viz", title: "Data Visualization", topics: ["Matplotlib", "Seaborn", "Plotly", "Dash", "Interactive Charts"] },
+      { id: "ai-projects", title: "AI Projects", topics: ["Prediction Models", "Classification Projects", "Clustering Projects", "NLP Projects", "Portfolio Deployment"] },
+      { id: "career", title: "Career & Learning Resources", topics: ["Interview Prep", "Resume Tips", "GitHub Best Practices", "Learning Communities", "Online Courses"] },
+      { id: "automation", title: "Python Automation", topics: ["Web Scraping", "Excel Automation", "Email Automation", "Scripts", "Bots"] },
+      { id: "cloud", title: "Cloud & Deployment", topics: ["AWS Basics", "Docker", "Heroku", "CI/CD Pipelines", "Serverless Functions"] }
+    ];
+  
+    const [expanded, setExpanded] = useState(roadmap[0].id);
+  
+    return (
+      <div className="top-0">
+        <div className="bg-white pt-20">
+          <div className="flex items-center justify-between mb-4">
+            <h4 className="font-semibold pl-3">Roadmap</h4>
+          </div>
+  
+          <nav className="space-y-3">
+            {roadmap.map((r) => {
+              const isOpen = expanded === r.id;
+              return (
+                <div key={r.id} className="overflow-hidden">
+                  <button
+                    onClick={() => setExpanded(prev => (prev === r.id ? null : r.id))}
+                    className="w-full px-3 py-2 flex items-center justify-between hover:bg-gray-50"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="bg-blue-50 p-2 rounded-md">
+                        <LibraryIcon size={16} />
+                      </div>
+                      <div className="text-left">
+                        <div className="font-medium text-sm">{r.title}</div>
+                        <div className="text-xs text-gray-500">Overview</div>
+                      </div>
+                    </div>
+                    <ChevronRight className={`transition-transform ${isOpen ? "rotate-90" : ""}`} />
+                  </button>
+  
+                  {isOpen && (
+                    <div className="px-3 pt-2 pb-3 bg-white">
+                      <ul className="space-y-1">
+                        {r.topics.map((t) => (
+                          <li key={t}>
+                            <button
+                              onClick={() => setActiveSection({ id: r.id, title: t })}
+                              className="w-full text-left px-3 py-2 rounded-md hover:bg-gray-100 text-sm"
+                            >
+                              {t}
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </nav>
         </div>
-
-        <nav className="space-y-3">
-          {roadmap.map((r) => {
-            const isOpen = expanded === r.id;
-            return (
-              <div key={r.id} className="overflow-hidden">
-                <button
-                  onClick={() => setExpanded((prev) => (prev === r.id ? null : r.id))}
-                  className="w-full px-3 py-2 flex items-center justify-between hover:bg-gray-50"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="bg-blue-50 p-2 rounded-md">
-                      <LibraryIcon size={16} />
-                    </div>
-                    <div className="text-left">
-                      <div className="font-medium text-sm">{r.title}</div>
-                      <div className="text-xs text-gray-500">Overview</div>
-                    </div>
-                  </div>
-                  <ChevronRight className={`transition-transform ${isOpen ? "rotate-90" : ""}`} />
-                </button>
-
-                {isOpen && (
-                  <div className="px-3 pt-2 pb-3 bg-white">
-                    <ul className="space-y-1">
-                      {r.topics.map((t) => (
-                        <li key={t}>
-                          <button
-                            className="w-full text-left px-3 py-2 rounded-md hover:bg-gray-100 text-sm"
-                            // click не робить нічого глобально — UI only
-                            onClick={() => {}}
-                          >
-                            {t}
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </nav>
-      </div>
-
-      {/* Quick actions shadow-sm */}
-      <div className="mt-4 bg-white p-4 ">
-        <h5 className="font-semibold mb-2">Quick actions</h5>
-        <div className="flex flex-col gap-2">
-          <button className="btn btn-sm">Continue course</button>
-          <button className="btn btn-outline btn-sm">Export progress</button>
-          <button className="btn btn-ghost btn-sm">Account settings</button>
+  
+        <div className="mt-4 bg-white p-4">
+          <h5 className="font-semibold mb-2">Quick actions</h5>
+          <div className="flex flex-col gap-2">
+            <button className="btn btn-sm">Continue course</button>
+            <button className="btn btn-outline btn-sm">Export progress</button>
+            <button className="btn btn-ghost btn-sm">Account settings</button>
+          </div>
         </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
+     
 /* ------------------------ UserHeader ------------------------ */
 /* Привітання користувача + кнопки */
-function UserHeader({ user }) {
-  return (
-    <div className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-4">
-         
-
+function UserHeader({ user, setActiveSection }) {
+    return (
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
           <div className="ml-2">
             {user?.avatar ? (
               <img src={user.avatar} alt={user.name} className="h-20 w-20 rounded-full object-cover" />
@@ -256,21 +207,27 @@ function UserHeader({ user }) {
             )}
           </div>
           <div>
-        <div className="text-sm text-gray-500">Welcome back,</div>
-        <div className="text-2xl font-semibold">{user?.name || "Student"}</div>
-        <div className="text-sm text-gray-500">Level: <span className="font-medium">{user?.level || "Beginner"}</span></div>
-      </div>
-
+            <div className="text-sm text-gray-500">Welcome back,</div>
+            <div className="text-2xl font-semibold">{user?.name || "Student"}</div>
+            <div className="text-sm text-gray-500">
+              Level: <span className="font-medium">{user?.level || "Beginner"}</span>
+            </div>
+          </div>
         </div>
-
-
-      <div className="flex items-center gap-3">
-        <button className="btn btn-outline">My Courses</button>
-        <button className="btn bg-yellow-400 text-white">Continue Learning</button>
+  
+        <div className="flex items-center gap-3">
+          <button
+            className="btn btn-outline rounded-xl"
+            onClick={() => setActiveSection({ id: "dashboard", title: null })}
+          >
+            Dashroom
+          </button>
+          <button className="btn bg-yellow-400 text-white rounded-xl">Continue Learning</button>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
+  
 
 /* ------------------------ HeroSection (твій базовий) ------------------------ */
 
