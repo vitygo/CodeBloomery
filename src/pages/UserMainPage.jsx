@@ -15,6 +15,8 @@ import {
 } from "lucide-react";
 import {Link} from 'react-router-dom'
 import PracticeRoom from "./PracticeRoom"
+import Dashboard from "./Dashboard"
+
 
 
 
@@ -41,17 +43,7 @@ export default function UserMainPage() {
   
             {/* Dashboard контент */}
             {activeSection.id === "dashboard" && (
-              <>
-                <StatsGrid />
-                <div className="grid md:grid-cols-2 gap-6">
-                  <DailyTasks />
-                  <div className="space-y-6">
-                    <ProgressCard />
-                    <FlashcardPreview />
-                  </div>
-                </div>
-                <Recommendations />
-              </>
+                <Dashboard/>
             )}
   
             {/* Рендер теми в PracticeRoom */}
@@ -71,7 +63,7 @@ export default function UserMainPage() {
 /* ------------------------ Navbar ------------------------ */
 /* логотип зсувається вліво (на UI відразу ліворуч), справа аватар */
 
-function Navbar({ user }){
+export function Navbar({ user }){
     return (
       <div data-animate className="navbar border-b-0 shadow-none absolute top-0 right-0 w-full z-60 ">
 
@@ -193,7 +185,7 @@ export function SidebarRoadmap({ setActiveSection }) {
      
 /* ------------------------ UserHeader ------------------------ */
 /* Привітання користувача + кнопки */
-function UserHeader({ user, setActiveSection }) {
+export function UserHeader({ user, setActiveSection }) {
     return (
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-4">
@@ -234,7 +226,7 @@ function UserHeader({ user, setActiveSection }) {
 
 /* ------------------------ StatsGrid ------------------------ */
 /* центральна статистика */
-function StatsGrid() {
+export function StatsGrid() {
   const stats = [
     { label: "Lessons Completed", value: "100+" },
     { label: "Daily Streak", value: "7 days" },
@@ -255,7 +247,7 @@ function StatsGrid() {
 
 /* ------------------------ DailyTasks ------------------------ */
 /* UI список щоденних завдань (неактивні) */
-function DailyTasks() {
+export function DailyTasks() {
   const tasks = [
     { id: 1, title: "Complete 'Lists & Tuples' exercise", time: "15 min" },
     { id: 2, title: "Daily challenge: string parsing", time: "10 min" },
@@ -289,7 +281,7 @@ function DailyTasks() {
 
 /* ------------------------ ProgressCard ------------------------ */
 /* показник прогресу з прогрес-баром */
-function ProgressCard() {
+export function ProgressCard() {
   const progress = 65; // UI only
   return (
     <div className="bg-white  rounded-2xl p-6 shadow-sm">
@@ -321,7 +313,7 @@ function ProgressCard() {
 
 /* ------------------------ FlashcardPreview ------------------------ */
 /* невелика картка флешкарти (UI only) */
-function FlashcardPreview() {
+export function FlashcardPreview() {
   return (
     <div className="bg-white rounded-2xl p-6 shadow-sm">
       <div className="flex items-center justify-between mb-3">
@@ -352,7 +344,7 @@ function FlashcardPreview() {
 
 /* ------------------------ Recommendations ------------------------ */
 /* рекомендації / next steps */
-function Recommendations() {
+export function Recommendations() {
   const recs = [
     { title: "Continue Variables", desc: "Next lesson: Advanced string formatting", eta: "12m" },
     { title: "Try today's challenge", desc: "String parsing practice", eta: "10m" },
@@ -376,7 +368,7 @@ function Recommendations() {
 }
 
 /* ------------------------ Footer ------------------------ */
-function Footer(){
+export function Footer(){
     return (
       <footer data-animate className="bg-white text-base-content py-16 px-8 relative z-20">
         {/* Logo Section */}
