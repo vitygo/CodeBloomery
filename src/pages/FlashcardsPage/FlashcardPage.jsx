@@ -422,7 +422,7 @@ export default function FlashcardsPage({ topic = "Variables", sectionId }) {
     switch (mode) {
       case 'menu':
         return (
-          <div className="flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-sm text-gray-700 min-h-[60vh]">
+          <div className="flex flex-col items-center justify-center p-6 bg-white rounded-2xl  text-gray-700 min-h-[60vh]">
             <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">Select a Learning Mode</h2>
             <div className="flex flex-col gap-4 w-full max-w-sm">
               <button
@@ -439,7 +439,7 @@ export default function FlashcardsPage({ topic = "Variables", sectionId }) {
               </button>
               <button
                 onClick={() => setMode('learn')}
-                className="bg-green-500 text-white font-semibold py-4 px-6 rounded-full shadow-md hover:bg-green-600 transition-colors flex items-center justify-center gap-2 text-lg"
+                className="bg-yellow-600 text-white font-semibold py-4 px-6 rounded-full shadow-md hover:bg-yellow-700 transition-colors flex items-center justify-center gap-2 text-lg"
               >
                 <Sparkles size={24} /> Learn
               </button>
