@@ -1,0 +1,130 @@
+/* TheoryPage.css */
+
+/* Загальний контейнер */
+.theory-page {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 30px 20px;
+    padding-left: 20px;
+    font-family: 'Inter', sans-serif;
+    color: #1f2937; /* темний текст для білого фону секцій */
+    line-height: 1.6;
+    background: #fcfcfc00; /* фон сторінки, можна світлий сірий */
+    border-radius: 12px;
+  }
+  
+  /* Заголовок */
+  .theory-title {
+    padding-left: 20px;
+    font-size: 2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    color: #111827;
+  }
+  
+  .theory-section {
+    padding-left: 20px;
+    font-size: 1rem;
+    color: #6b7280;
+    margin-bottom: 20px;
+  }
+  
+  /* Блоки секцій з білим фоном */
+  section {
+
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    /* box-shadow: 0 5px 15px rgba(0,0,0,0.1); */
+  }
+  
+  /* Заголовки секцій */
+  section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    color: #facc15; /* жовтий акцент */
+  }
+  
+  /* Параграфи та списки */
+  section p,
+  .theory-details li {
+    font-size: 1rem;
+    color: #000000;
+  }
+  
+  .theory-details ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  
+  /* CodeMirror редактор */
+  .code-editor-cm {
+    width: 100%;
+    min-height: fit-content; /* мінімальна висота */
+    height: auto;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border: 1px solid #d1d5db;
+    background-color: #1e1e1e; /* темний фон редактора */
+  }
+  
+  /* Кнопка Run Code */
+  .run-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #007acc;
+    color: #fff;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .run-button:hover {
+    background-color: #005a9e;
+    transform: translateY(-2px);
+  }
+  
+  /* Термінал */
+  .terminal-output {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.6);
+    font-family: 'Fira Code', monospace;
+    white-space: pre-wrap;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #3f3f46;
+  }
+  
+  .terminal-header {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #0dbc79;
+  }
+  
+  .terminal-content div {
+    line-height: 1.5;
+  }
+  
+  .terminal-content div::before {
+    color: #6ee7b7;
+  }
+  
