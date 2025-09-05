@@ -139,6 +139,8 @@ export function Navbar({ user }){
 /* Roadmap з секціями і підтемами (UI only) */
 // SidebarRoadmap.jsx
 export function SidebarRoadmap({ setActiveSection }) {
+
+  
     const roadmap = [
       { id: "python-beginner", title: "Python Beginner", topics: ["Variables", "Data Types", "Operators", "Strings", "Lists"] },
       { id: "python-intermediate", title: "Python Intermediate", topics: ["Comprehensions", "Functions", "Files", "OOP", "Decorators"] },
@@ -158,7 +160,7 @@ export function SidebarRoadmap({ setActiveSection }) {
 
 
     const [expanded, setExpanded] = useState(roadmap[0].id);
-  
+    const [sidebarOpen, setSidebarOpen] = useState(true);
     return (
       <div className="top-0">
         <div className="bg-white pt-20">

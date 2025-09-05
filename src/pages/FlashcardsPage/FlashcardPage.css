@@ -1,0 +1,54 @@
+.page-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 30px 20px;
+    padding-left: 20px;
+    font-family: 'Inter', sans-serif;
+    color: #1f2937;
+    line-height: 1.6;
+    background: #fcfcfc;
+    border-radius: 12px;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  .flashcard-inner {
+    transform-style: preserve-3d;
+  }
+  .flashcard-inner.is-flipped {
+    transform: rotateY(180deg);
+  }
+
+  .flashcard-wrapper {
+    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+  }
+
+  .flashcard-wrapper.animate-out.fly-left {
+    transform: translateX(-150%) rotateY(-30deg) rotateZ(-10deg);
+    opacity: 0;
+  }
+
+  .flashcard-wrapper.animate-out.fly-right {
+    transform: translateX(150%) rotateY(30deg) rotateZ(10deg);
+    opacity: 0;
+  }
+
+  /* New card fly-in animation */
+  .flashcard-wrapper-in {
+    animation: fly-in 0.8s ease-out;
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  @keyframes fly-in {
+    from {
+      transform: translateX(-150%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
