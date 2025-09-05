@@ -1,4 +1,14 @@
 import React, { useState } from "react";
+import TheoryPage from "./TheoryPage/TheoryPage";
+import ExercisesPage from "./ExercisesPage/ExercisesPage";
+import FlashcardsPage from "./FlashcardsPage/FlashcardPage";
+import QuizzesPage from "./QuizzesPage/QuizzesPage";
+import VideosPage from "./VideosPage/VideosPage";
+import ProgressPage from "./ProgressPage/ProgressPage";
+import RewardsPage from "./RewardsPage/RewardsPage";
+import ProjectsPage from "./ProjectsPage/ProjectsPage";
+import CommunityPage from "./CommunityPage/CommunityPage";
+
 import {
   ArrowRight,
   Badge,
@@ -17,16 +27,34 @@ import {Link} from 'react-router-dom'
 import PracticeRoom from "./PracticeRoom"
 import Dashboard from "./Dashboard"
 
+const practicePages = {
+  theory: TheoryPage,
+  exercises: ExercisesPage,
+  flashcards: FlashcardsPage,
+  quizzes: QuizzesPage,
+  videos: VideosPage,
+  progress: ProgressPage,
+  rewards: RewardsPage,
+  projects: ProjectsPage,
+  community: CommunityPage,
+};
 
 
 
 /* ------------------------ Root page ------------------------ */
 export default function UserMainPage() {
+
+
+
+
+
     const demoUser = {
       name: "Viktor",
       avatar: "/avatar.jpg",
       level: "Intermediate",
     };
+
+  
   
     const [activeSection, setActiveSection] = useState({ id: "dashboard", title: null });
   
@@ -41,18 +69,28 @@ export default function UserMainPage() {
           <main className="md:col-span-8 lg:col-span-9 space-y-6 h-screen pt-20">
             <UserHeader user={demoUser}  setActiveSection={setActiveSection}/>
   
-            {/* Dashboard контент */}
-            {activeSection.id === "dashboard" && (
-                <Dashboard/>
-            )}
-  
-            {/* Рендер теми в PracticeRoom */}
-            {activeSection.id !== "dashboard" && activeSection.title && (
-              <div>
+{/* Dashboard */}
+{activeSection.id === "dashboard" && <Dashboard />}
 
-                <PracticeRoom topic={activeSection.title} />
-              </div>
-            )}
+{/* PracticeRoom */}
+{activeSection.id !== "dashboard" && !activeSection.practiceType && (
+  <PracticeRoom
+    topic={activeSection.title}
+    sectionId={activeSection.id}
+    setActiveSection={setActiveSection}
+  />
+)}
+
+{/* Practice type pages */}
+{activeSection.practiceType && (() => {
+  const Page = practicePages[activeSection.practiceType];
+  return Page ? (
+    <Page topic={activeSection.title} sectionId={activeSection.id} />
+  ) : null;
+})()}
+
+
+
           </main>
         </div>
         <Footer />
@@ -117,7 +155,8 @@ export function SidebarRoadmap({ setActiveSection }) {
       { id: "automation", title: "Python Automation", topics: ["Web Scraping", "Excel Automation", "Email Automation", "Scripts", "Bots"] },
       { id: "cloud", title: "Cloud & Deployment", topics: ["AWS Basics", "Docker", "Heroku", "CI/CD Pipelines", "Serverless Functions"] }
     ];
-  
+
+
     const [expanded, setExpanded] = useState(roadmap[0].id);
   
     return (
