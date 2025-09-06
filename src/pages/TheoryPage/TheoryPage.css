@@ -69,15 +69,29 @@
   /* CodeMirror редактор */
   .code-editor-cm {
     width: 100%;
+    padding: 0px;
     min-height: fit-content; /* мінімальна висота */
     height: auto;
     border-radius: 8px;
     overflow: hidden;
     margin-bottom: 15px;
     font-size: 0.95rem;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    border: 1px solid #d1d5db;
-    background-color: #1e1e1e; /* темний фон редактора */
+    background-color: #282c34; /* темний фон редактора */
+  }
+
+  .cm-editor{
+    outline: none;
+    border: none;
+    padding: 20px;
+  }
+
+  .cm-editor:active{ 
+    outline: none;
+    border: none;
+  }
+  .cm-editor:focus{ 
+    outline: none;
+    border: none;
   }
   
   /* Кнопка Run Code */

@@ -221,7 +221,7 @@ function FeaturesSection(){
 
 function PythonCurriculumSection(){
   return (
-    <section data-animate className="bg-transparent py-24 relative z-300">
+    <section data-animate className="bg-transparent py-24 relative z-300 ">
       <div className="max-w-6xl mx-auto px-4 text-center">
         <h2 className="text-5xl font-bold mb-6">Python Curriculum</h2>
         <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
