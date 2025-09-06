@@ -62,3 +62,7 @@
   .flashcard-face.flashcard-back {
     transform: rotateY(180deg);
   }
+
+  .answer-grid{
+    margin-top: 15%;
+  }

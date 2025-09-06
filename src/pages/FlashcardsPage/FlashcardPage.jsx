@@ -110,13 +110,13 @@ const LearnMode = ({ topic, onModeChange }) => {
       <p className="text-gray-500 mb-6">Match the question to the correct answer.</p>
       
       <div className="w-full max-w-lg mx-auto mb-6 relative flashcard-wrapper">
-        <div className="flashcard-face flashcard-front w-full h-80 rounded-2xl shadow-lg p-8 flex flex-col justify-center items-center text-center bg-white">
-          <h3 className="text-lg text-gray-500 font-medium mb-4">Question</h3>
+        <div className="flashcard-face flashcard-front w-full h-80 rounded-2xl shadow-lg p-8 flex flex-col justify-center items-center text-center bg-white pb-15">
+          <h3 className="text-lg text-gray-500 font-medium mb-4">Question:</h3>
           <p className="text-xl font-semibold text-gray-800">{currentCard?.question}</p>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="answer-grid grid grid-cols-2 gap-4">
         {options.map((option, index) => (
           <button
             key={index}
