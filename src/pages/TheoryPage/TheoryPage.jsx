@@ -10,16 +10,22 @@ import "./TheoryPage.css";
 const theoryData = {
   Variables: {
     title: "Variables in Python",
-    intro: "Variables are containers for storing data values...",
+    intro: "In Python, a variable is a named storage location that holds a value. Think of it as a label you attach to a piece of data to easily reference it later. Unlike many other programming languages, Python is **dynamically typed**, meaning you don't need to specify the variable's data type when you create it; the interpreter figures it out for you.",
     details: [
-      "Variable names must start with a letter or underscore (_).",
-      "Python is dynamically typed: no need to declare the type explicitly.",
-      "Variables are case-sensitive.",
-      "Variables can store numbers, strings, lists, dictionaries, booleans, etc.",
-      "Variables are mutable, so their values can be changed.",
-      "Use meaningful names for readability."
+   "**Naming Rules:** Variable names must begin with a letter (a-z, A-Z) or an underscore (`_`). After the first character, they can contain letters, numbers (0-9), and underscores.",
+      "**Dynamic Typing:** Python automatically assigns a data type (like integer, string, or boolean) to the variable based on the value it's given. This makes the language flexible and easy to use.",
+      "**Case Sensitivity:** Variable names are case-sensitive. For example, `my_name`, `My_name`, and `MY_NAME` are considered three different variables.",
+      "**Data Storage:** Variables can store various data types, including numbers (`int`, `float`), text (`str`), boolean values (`True`/`False`), and complex data structures like lists, tuples, and dictionaries.",
+      "**Mutability:** Variables are **mutable**, which means you can change the value stored in them at any point after they have been created. This allows for dynamic data manipulation within your programs.",
+      "**Best Practices:** Use descriptive and meaningful variable names (e.g., `user_age` instead of `ua`) to make your code more readable and understandable for both yourself and others.",
+      "**Naming Rules:** Variable names must begin with a letter (a-z, A-Z) or an underscore (`_`). After the first character, they can contain letters, numbers (0-9), and underscores.",
+      "**Dynamic Typing:** Python automatically assigns a data type (like integer, string, or boolean) to the variable based on the value it's given. This makes the language flexible and easy to use.",
+      "**Case Sensitivity:** Variable names are case-sensitive. For example, `my_name`, `My_name`, and `MY_NAME` are considered three different variables.",
+      "**Data Storage:** Variables can store various data types, including numbers (`int`, `float`), text (`str`), boolean values (`True`/`False`), and complex data structures like lists, tuples, and dictionaries.",
+      "**Mutability:** Variables are **mutable**, which means you can change the value stored in them at any point after they have been created. This allows for dynamic data manipulation within your programs.",
+      "**Best Practices:** Use descriptiv"
     ],
-    codeExample: `# This is a comment\nx = 10\ny = 20\nname = 'Viktor'\n\nprint(x + y)\nprint('Hello', name)`
+    codeExample: "# Assigning different data types to variables\nage = 30\nname = 'Alice'\nis_student = True\n\n# Printing the values and their types\nprint(age)           # Output: 30\nprint(type(age))     # Output: <class 'int'>\n\nprint(name)          # Output: Alice\nprint(type(name))    # Output: <class 'str'>\n\n# Reassigning a new value to an existing variable\nage = 31\nprint(age)           # Output: 31"
   }
 };
 

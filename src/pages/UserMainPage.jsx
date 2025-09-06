@@ -59,14 +59,15 @@ export default function UserMainPage() {
     const [activeSection, setActiveSection] = useState({ id: "dashboard", title: null });
   
     return (
-      <div className="min-h-screen bg-transparent text-gray-900">
+      <>
+      <div className="min-h-screen bg-transparent text-gray-900 flex flex-col  ">
         <Navbar user={demoUser} />
-        <div className="max-w-8xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 px-4 py-8 pl-0 pt-0">
+        <div className="flex-grow max-w-8xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 px-4 py-8 pl-0 pt-0">
           <aside className="md:col-span-4 lg:col-span-2 h-full">
             <SidebarRoadmap setActiveSection={setActiveSection} />
           </aside>
   
-          <main className="md:col-span-8 lg:col-span-9 space-y-6 h-screen pt-20">
+          <main className="md:col-span-8 lg:col-span-9 space-y-6  pt-20">
             <UserHeader user={demoUser}  setActiveSection={setActiveSection}/>
   
 {/* Dashboard */}
@@ -95,6 +96,9 @@ export default function UserMainPage() {
         </div>
         <Footer />
       </div>
+      
+      </>
+      
     );
   }
 
@@ -411,7 +415,7 @@ export function Recommendations() {
 /* ------------------------ Footer ------------------------ */
 export function Footer(){
     return (
-      <footer data-animate className="bg-white text-base-content py-16 px-8 relative z-20">
+      <footer data-animate className="bg-white text-base-content py-16 px-8 relative z-20 mt-10">
         {/* Logo Section */}
         <div className="flex justify-center mb-10">
           <img src="/3.svg" alt="Logo" className="h-12" />
