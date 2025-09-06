@@ -6,7 +6,7 @@
     font-family: 'Inter', sans-serif;
     color: #1f2937;
     line-height: 1.6;
-    background: #fcfcfc;
+    background: #ffffff;
     border-radius: 12px;
   }
 
@@ -51,4 +51,14 @@
       transform: translateX(0);
       opacity: 1;
     }
+  }
+
+  .flashcard-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .flashcard-face.flashcard-back {
+    transform: rotateY(180deg);
   }

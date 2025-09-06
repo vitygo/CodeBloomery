@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FlipHorizontal, BookOpen, RefreshCcw, BadgeCheck, BadgeX, Play, Brain, Sparkles } from "lucide-react";
+import './FlashcardPage.css'
 
 // Placeholder data for flashcards
 const flashcardData = {
